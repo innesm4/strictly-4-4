@@ -97,6 +97,18 @@ settingsSchemaObject = {
       })
     }
   },
+  postsLayout: {
+    type: String,
+    optional: true,
+    autoform: {
+      group: 'posts',
+      instructions: 'The layout used for post lists',
+      options: [
+        {value: 'posts-list', label: 'List'},
+        {value: 'posts-grid', label: 'Grid'}
+      ]
+    }
+  },
   postInterval: {
     type: Number,
     optional: true,
@@ -169,10 +181,10 @@ settingsSchemaObject = {
       group: 'general',
       instructions: 'The app\'s language. Defaults to English.',
       options: function () {
-        var languages = _.map(TAPi18n.languages_available_for_project, function (item, key) {
+        var languages = _.map(TAPi18n.getLanguages(), function (item, key) {
           return {
             value: key,
-            label: item[0]
+            label: item.name
           }
         });
         return languages
